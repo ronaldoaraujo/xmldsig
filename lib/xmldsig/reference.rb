@@ -39,10 +39,7 @@ module Xmldsig
           if ref = document.dup.at_xpath(referenced_node_xpath, NAMESPACES, variable_bindings)
             ref
           else
-            raise(
-                ReferencedNodeNotFound,
-                "Could not find the referenced node #{id}'"
-            )
+            document.dup.at_xpath("//*[@Id=$uri]", NAMESPACES, variable_bindings)
           end
         end
       else
